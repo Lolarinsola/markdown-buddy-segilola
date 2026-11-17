@@ -1,5 +1,5 @@
 > **AI Assistance Declaration:** I used Claude (Anthropic, Sonnet 5.5) on Nov 17, 2026 to help draft the project documentation. Prompts used: see `Appendix_Prompts.md`. I verified outputs by previewing the rendered Markdown and checking them against the script and dataset. All final calculations are done by myself. I am responsible for the accuracy and originality of this work. The reflection answers below are my own.
-
+I compared the structure with the tidyverse dplyr README, which uses the same core sections
 # Reflection
 
 ## 1. What did AI do well, and where did it fall short, when drafting documentation?
