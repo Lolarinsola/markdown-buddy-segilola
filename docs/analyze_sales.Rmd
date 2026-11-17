@@ -1,0 +1,97 @@
+---
+title: "Documentation: analyze_sales.R"
+author: "Segilola Akinrinsola"
+date: "2026-11-17"
+output: html_document
+---
+
+> **AI Assistance Declaration:** I used Claude (Anthropic, Sonnet 5.5) on Nov 17, 2026 to suggest the section layout and code block examples for this document. Prompts used: see `Appendix_Prompts.md`. I verified outputs by checking each described step against the script and the dataset columns. All final calculations are done by myself. I am responsible for the accuracy and originality of this work.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+knitr::read_chunk("../scripts/analyze_sales.R")
+```
+
+# Purpose
+
+`analyze_sales.R` summarises revenue, profit and margin by product category for a synthetic retail transactions dataset. It saves the summary as a CSV file and as a bar chart so the results can be reused without re-running the analysis.
+
+# Inputs
+
+The script reads one file, `data/retail_transactions.csv`, with these columns:
+
+```{r inputs-table, eval=TRUE, echo=FALSE}
+inputs <- data.frame(
+  Column = c("order_id", "date", "product", "category", "region",
+             "units", "price", "discount", "cost", "channel"),
+  Type = c("text", "date", "text", "text", "text",
+           "integer", "numeric", "numeric", "numeric", "text"),
+  Description = c("Unique order identifier", "Order date (YYYY-MM-DD)",
+                  "Product name", "Product category", "Sales region",
+                  "Units sold", "Price per unit before discount",
+                  "Discount as a fraction of price", "Cost per unit",
+                  "Sales channel (Store, Online, Phone)")
+)
+knitr::kable(inputs)
+```
+
+Required packages: `readr`, `dplyr` and `ggplot2`.
+
+# Outputs
+
+| File | Description |
+|------|-------------|
+| `output/category_summary.csv` | Orders, units, revenue, profit and margin for each category |
+| `output/revenue_by_category.png` | Horizontal bar chart of revenue by category |
+
+# How the script works
+
+## Load packages
+
+```{r load-packages}
+```
+
+## Set paths and check the input file
+
+The script stops with a clear message if the data file is missing.
+
+```{r set-paths}
+```
+
+## Read and validate the data
+
+```{r read-data}
+```
+
+## Derive revenue and profit
+
+Price and cost are per unit, and `discount` is a fraction of price.
+
+```{r derive-metrics}
+```
+
+## Summarise by category
+
+```{r summarise}
+```
+
+## Save the table and chart
+
+```{r save-table}
+```
+
+```{r plot-and-save}
+```
+
+# Example usage
+
+Run the script from the project root:
+
+```r
+source("scripts/analyze_sales.R")
+```
+
+# Notes
+
+- Only synthetic data is used.
+- Margin is profit divided by revenue, rounded to three decimals.
